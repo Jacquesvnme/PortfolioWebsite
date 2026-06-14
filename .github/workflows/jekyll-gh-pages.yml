@@ -27,13 +27,13 @@ jobs:
           dotnet-version: '10.0.x' # Adjust to your .NET version
 
       - name: Restore dependencies
-        run: dotnet restore NewPortfolioWebsite.sln
+        run: dotnet restore PortfolioWebsite.sln
 
       - name: Build
-        run: dotnet build NewPortfolioWebsite.sln --configuration Release --no-restore
+        run: dotnet build PortfolioWebsite.sln --configuration Release --no-restore
 
       - name: Publish
-        run: dotnet publish NewPortfolioWebsite.sln --configuration Release --no-build -o ./publish
+        run: dotnet publish PortfolioWebsite.sln --configuration Release --no-build -o ./publish
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
