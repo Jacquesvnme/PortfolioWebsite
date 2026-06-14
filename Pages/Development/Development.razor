@@ -1,0 +1,111 @@
+﻿@using System.Text.Json
+
+@inject HttpClient Http
+
+@page "/development"
+
+<MudText Typo="Typo.h3" Class="mb-4">Third-Party Packages</MudText>
+
+@if (isLoading)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+    <MudText>Loading packages...</MudText>
+}
+else if (!string.IsNullOrEmpty(errorMessage))
+{
+    <MudAlert Severity="Severity.Error">@errorMessage</MudAlert>
+}
+else
+{
+    <MudText Typo="Typo.h6" Class="mt-4 mb-1">Package Information</MudText>
+    <MudSimpleTable Style="overflow-x: auto;" Dense Elevation="3" Square Hover>
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Total Third-Party Packages</td>
+                <td>@packages.Count</td>
+            </tr>
+        </tbody>
+    </MudSimpleTable>
+
+    <MudText Typo="Typo.h6" Class="mt-4 mb-1">All Third-Party Packages</MudText>
+    <MudDataGrid Items="@packages" Dense Filterable SortMode="SortMode.Multiple" Class="mb-6">
+        <Columns>
+            <PropertyColumn Property="x => x.Name" Title="Package Name" />
+            <PropertyColumn Property="x => x.Version" Title="Version" />
+            <PropertyColumn Property="x => x.Project" Title="Project" />
+        </Columns>
+    </MudDataGrid>
+}
+
+@code {
+    private List<PackageInfo> packages { get; set; } = new();
+    private bool isLoading = true;
+    private string errorMessage = string.Empty;
+
+    protected override async Task OnInitializedAsync()
+    {
+        System.Diagnostics.Debugger.Break();
+
+        try
+        {
+            packages = await GetProjectPackagesAsync();
+            isLoading = false;
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Error loading packages: {ex.Message}";
+            isLoading = false;
+        }
+    }
+
+    public async Task<List<PackageInfo>> GetProjectPackagesAsync()
+    {
+        try
+        {
+            // Fetch from wwwroot using HttpClient (works in Blazor WASM)
+            var response = await Http.GetStringAsync("packages.json");
+            
+            var packageList = JsonSerializer.Deserialize<List<PackageInfo>>(response, new JsonSerializerOptions
+            {
+                PropertyNameCaseInsensitive = true
+            });
+
+            return packageList?.OrderBy(p => p.Name).ToList() ?? new List<PackageInfo>();
+
+            // var resourceUrl = "https:localhost:7191/packages.json"; $"wwwroot/packages.json";
+            // var fileExists = File.Exists(resourceUrl);
+            // string response = string.Empty;
+            // if (fileExists)
+            // {
+            //     response = File.ReadAllText(resourceUrl);
+            // }
+
+            // In Blazor WebAssembly, use HttpClient to fetch from wwwroot
+            // var response = await Http.GetStringAsync("data/packages.json");
+            // var packageList = JsonSerializer.Deserialize<List<PackageInfo>>(response, new JsonSerializerOptions
+            // {
+            //     PropertyNameCaseInsensitive = true
+            // });
+
+            // return packageList?.OrderBy(p => p.Name).ToList() ?? new List<PackageInfo>();
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Failed to load package data: {ex.Message}";
+            return new List<PackageInfo>();
+        }
+    }
+
+    public class PackageInfo
+    {
+        public string Name { get; set; } = string.Empty;
+        public string Version { get; set; } = string.Empty;
+        public string Project { get; set; } = string.Empty;
+    }
+}

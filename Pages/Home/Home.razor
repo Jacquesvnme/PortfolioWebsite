@@ -1,0 +1,67 @@
+﻿@page "/"
+@page "/home"
+
+<PageTitle>Home</PageTitle>
+
+<MudText Typo="Typo.h2" Inline>Jacques van Niekerk</MudText>
+<MudText Typo="Typo.body1" Class="mt-2 mb-2">Coder Enthusiast</MudText>
+
+<MudPaper Class="pa-2">
+	<MudText Typo="Typo.h5" Inline>Personal Details</MudText>
+	<MudDivider />
+	<MudText Typo="Typo.body1" Class="pa-2">
+		I'm a student currently studying at Belgium Campus I have learnt a wide variety of programming languages
+		and frameworks I believe my problem solving skills is a highly valuable skill that will help me solve
+		any problem that might come my way I am always open to learning new languages and gaining new knowledge
+		I also have proficient skills in web programming which includes HTML, CSS, and JavaScript, along with
+		a few frameworks & modules I would like to further my progress and one day become a full stack developer
+	</MudText>
+</MudPaper>
+
+<MudDivider Class="pa-2" />
+
+<MudPaper Style="max-width:500px;" Class="pa-2">
+	<MudText Typo="Typo.h5" Inline>Key Skills</MudText>
+	<MudDivider />
+
+	<MudList T="string" Dense Class="pa-2">
+		<MudListItem Text="Web Development"></MudListItem>
+		<MudListItem Text="Software Development"></MudListItem>
+		<MudListItem Text="Software Testing"></MudListItem>
+		<MudListItem Text="Research Skills"></MudListItem>
+		<MudListItem Text="Team Collaboration & Communication"></MudListItem>
+		<MudListItem Text="Leadership Skills"></MudListItem>
+		<MudListItem Text="Problem Solving"></MudListItem>
+		<MudListItem Text="Project Management & Agile Methodologies"></MudListItem>
+	</MudList>
+</MudPaper>
+
+<MudDivider Class="pa-2" />
+
+<MudPaper Style="max-width:500px;" Class="pa-2">
+	<MudText Typo="Typo.h5" Inline>Contact details</MudText>
+	<MudDivider />
+
+	<MudList T="string" Dense Class="pa-2">
+		<MudLink Color="Color.Default" Underline="Underline.None" Href="mailto:jacquesvnme@email.com">
+			<MudListItem Text="Personal email" Icon="fa-solid fa-at"/>
+		</MudLink>
+
+		<MudLink Color="Color.Default" Underline="Underline.None" Href="https://www.linkedin.com/in/jacques-van-niekerk-231b872ba">
+			<MudListItem Text="LinkedIn" Icon="fa-brands fa-linkedin" />
+		</MudLink>
+
+		<MudLink Color="Color.Default" Underline="Underline.None" Href="https://github.com/Jacquesvnme">
+			<MudListItem Text="Github" Icon="fa-brands fa-github" />
+		</MudLink>
+
+		<MudDivider/>
+
+		<MudListItem Text="Other" Icon="fa-solid fa-plus" Expanded ExpandLessIcon="" ExpandMoreIcon="">
+			<NestedList>
+				<MudListItem Text="W3Schools" Icon="fa-solid fa-link"></MudListItem>
+				<MudListItem Text="Codecademy" Icon="fa-solid fa-link"></MudListItem>
+			</NestedList>
+		</MudListItem>
+	</MudList>
+</MudPaper>

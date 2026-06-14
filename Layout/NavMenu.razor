@@ -1,0 +1,42 @@
+﻿@inject NavigationManager _navigrationManager;
+
+<MudPaper Height="100%" Width="100%" Class="pa-4" Style="background-color: var(--mud-palette-primary); margin: 0;" Square>
+
+    <MudNavMenu Style="color: white;" Dense Rounded Class="custom-nav-menu">
+        <MudText Typo="Typo.h6" Class="px-4">@PrimaryText</MudText>
+        <MudText Typo="Typo.body2" Class="px-4 mud-text-secondary">@SecondaryText</MudText>
+
+        <MudDivider Class="my-2" />
+
+        <MudNavLink Href="/home">Home</MudNavLink>
+        <MudNavLink Href="/myself">Myself</MudNavLink>
+        <MudNavLink Href="/academicHistory">Academic History</MudNavLink>
+        <MudNavLink Href="/skills">Skills</MudNavLink>
+        <MudNavLink Href="/development">Development</MudNavLink>
+    </MudNavMenu>
+
+</MudPaper>
+
+<style>
+    /* Override active link styling for better visibility on primary background */
+    .custom-nav-menu .mud-nav-link.active {
+        background-color: rgba(255, 255, 255, 0.15) !important;
+        color: white !important;
+    }
+
+    /* Hover state for better UX */
+    .custom-nav-menu .mud-nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+        color: white !important;
+    }
+
+    /* Ensure non-active links are also white */
+    .custom-nav-menu .mud-nav-link {
+        color: white !important;
+    }
+</style>
+
+@code {
+    public string PrimaryText { get; set; } = "Primary Text";
+    public string SecondaryText { get; set; } = "Secondary Text";
+}

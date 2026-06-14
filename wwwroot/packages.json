@@ -1,0 +1,32 @@
+﻿[
+  {
+    "Name": "MudBlazor",
+    "Version": "9.5.0",
+    "Project": "PortfolioWebsite"
+  },
+  {
+    "Name": "MudBlazor.FontIcons.MaterialIcons",
+    "Version": "1.4.0",
+    "Project": "PortfolioWebsite"
+  },
+  {
+    "Name": "MudBlazor.FontIcons.MaterialSymbols",
+    "Version": "1.4.0",
+    "Project": "PortfolioWebsite"
+  },
+  {
+    "Name": "MudBlazor.Markdown",
+    "Version": "9.0.0",
+    "Project": "PortfolioWebsite"
+  },
+  {
+    "Name": "MudBlazor.ThemeManager",
+    "Version": "4.0.0",
+    "Project": "PortfolioWebsite"
+  },
+  {
+    "Name": "CodeBeam.MudBlazor.Extensions",
+    "Version": "9.1.0",
+    "Project": "PortfolioWebsite"
+  }
+]

@@ -1,0 +1,22 @@
+﻿@page "/myself"
+
+<h3>Myself</h3>
+
+<MudButton OnClick="Test">Test</MudButton>
+
+Still to be added
+
+@if (!string.IsNullOrEmpty(message))
+{
+    <MudAlert Severity="Severity.Success" Class="mt-3">@message</MudAlert>
+}
+
+@code {
+    private string message = string.Empty;
+
+    public void Test()
+    {
+        Console.WriteLine("This Works");
+        message = "Button clicked!";
+    }
+}

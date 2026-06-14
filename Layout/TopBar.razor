@@ -1,0 +1,35 @@
+﻿@using System.Runtime.InteropServices
+
+@inject IJSRuntime JSRuntime
+
+<MudPaper Height="100%" Width="100%" Style="display: flex; align-items: center; justify-content: space-between; background-color: var(--mud-palette-dark);" Class="pl-4 pr-4" Square>
+    <MudText Typo="Typo.body1" Style="color: white;">
+        @GetRenderModeDisplay()
+    </MudText>
+    <MudChip T="string" Size="Size.Small" Color="@GetRenderModeColor()">@GetRenderMode()</MudChip>
+</MudPaper>
+
+@code {
+    private string GetRenderMode()
+    {
+        if (OperatingSystem.IsBrowser())
+        {
+            return "WASM";
+        }
+        return "Server";
+    }
+
+    private string GetRenderModeDisplay()
+    {
+        if (OperatingSystem.IsBrowser())
+        {
+            return "Running in WebAssembly Mode";
+        }
+        return "Prerendering on Server";
+    }
+
+    private Color GetRenderModeColor()
+    {
+        return OperatingSystem.IsBrowser() ? Color.Success : Color.Info;
+    }
+}
