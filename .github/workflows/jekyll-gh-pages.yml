@@ -35,6 +35,10 @@ jobs:
       - name: Publish
         run: dotnet publish PortfolioWebsite.sln --configuration Release --no-build -o ./publish
 
+      # ADD THIS STEP HERE TO FORCE GENERATION
+      - name: Force Add .nojekyll File
+        run: touch publish/wwwroot/.nojekyll
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
