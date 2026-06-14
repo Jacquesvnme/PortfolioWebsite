@@ -38,6 +38,11 @@ jobs:
       - name: Publish
         run: dotnet publish PortfolioWebsite.csproj --configuration Release --no-build -o ./publish
 
+      - name: Create blazor.webassembly.js alias
+        run: |
+          FILE=$(find publish/wwwroot/_framework -maxdepth 1 -type f -name 'blazor.webassembly.*.js' ! -name '*.br' ! -name '*.gz' | head -n 1)
+          cp "$FILE" publish/wwwroot/_framework/blazor.webassembly.js
+
       - name: Ensure .nojekyll exists
         run: |
           mkdir -p publish/wwwroot
